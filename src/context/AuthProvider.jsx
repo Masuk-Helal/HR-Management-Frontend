@@ -1,39 +1,32 @@
 import React, { createContext, useEffect, useState } from "react";
-import { baseUrl } from "../services/BaseUrl";
+import { decodeToken } from "../services/decodeToken";
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const accessToken = localStorage.getItem("lm_token");
-  console.log(accessToken);
-
-  const fetchUser = async () => {
-    const userRes = await fetch(`${baseUrl}/user`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    if (!userRes.ok) {
-      localStorage.removeItem("lm_token");
-      setAuthUser(null);
-      return;
-    }
-
-    const userData = await userRes.json();
-
-    setAuthUser(userData);
-  };
 
   useEffect(() => {
-     if (!accessToken) {
+    if (!accessToken) {
       setAuthUser(null);
+      setLoading(false);
       return;
     }
 
-    fetchUser();
+    const userData = decodeToken(accessToken);
+
+    if (!userData) {
+      localStorage.removeItem("lm_token");
+      setAuthUser(null);
+      setLoading(false);
+      return;
+    }
+
+    setAuthUser(userData);
+    setLoading(false);
   }, [accessToken]);
 
   const logout =()=>{
@@ -41,7 +34,7 @@ const AuthProvider = ({ children }) => {
     setAuthUser(null)
   }
   return (
-    <AuthContext.Provider value={{ authUser, setAuthUser, logout }}>
+    <AuthContext.Provider value={{ authUser, setAuthUser, logout, accessToken, loading }}>
       {children}
     </AuthContext.Provider>
   );

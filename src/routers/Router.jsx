@@ -3,7 +3,16 @@ import Root from './../layout/Root';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
-import BrowseBook from '../pages/BrowseBook';
+import AllJobs from './../pages/AllJobs';
+import JobDetails from '../pages/JobDetails';
+import MyApplyed from '../pages/MyApplyed';
+import Apply from '../pages/Apply';
+import AdminLayout from '../layout/AdminLayout';
+import CreateJob from '../pages/admin/CreateJob';
+import ManageJobs from '../pages/admin/ManageJobs';
+import EditJob from '../pages/admin/EditJob';
+import PrivateRoutes from './PrivateRoutes';
+import HrProtected from './HrProtected';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,11 +31,41 @@ const router = createBrowserRouter([
         element:<SignUp></SignUp>
       },
       {
-        path:"/browsebook",
-        element:<BrowseBook></BrowseBook>
+        path:"/alljobs",
+        element:<AllJobs></AllJobs>
+      },
+      {
+        path:"/jobdetails/:id",
+        element:<PrivateRoutes><JobDetails></JobDetails></PrivateRoutes>
+      },
+      {
+        path:"/apply",
+        element:<PrivateRoutes><MyApplyed></MyApplyed></PrivateRoutes>
+      },
+      {
+        path:"/apply/:id",
+        element:<PrivateRoutes><Apply></Apply></PrivateRoutes>
       }
     ]
   },
+  {
+    path:"/hr",
+    element:<HrProtected><AdminLayout></AdminLayout></HrProtected>,
+    children:[
+      {
+        path:'create-job',
+        element:<CreateJob/>
+      },
+      {
+        path:'manage-jobs',
+        element:<ManageJobs/>
+      },
+      {
+        path:'edit-job/:id',
+        element:<EditJob/>
+      }
+    ]
+  }
 ]);
 
 export default router

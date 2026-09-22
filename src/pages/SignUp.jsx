@@ -1,6 +1,8 @@
-import { useState } from "react";
-import { Link } from "react-router";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router";
 import { baseUrl } from "../services/BaseUrl";
+import { AuthContext } from "../context/AuthProvider";
+import { decodeToken } from "../services/decodeToken";
 
 
 const SignUp = () => {
@@ -10,30 +12,73 @@ const SignUp = () => {
   const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const [error, setError] = useState("");
+  const { setAuthUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
 
 
 const handleSignup = async () => {
-  const userData = {
-    email,
-    username,
-    firstname,
-    lastname,
-    password,
-    role
-  };
+  setError("");
+  try {
+    const userData = {
+      email,
+      username,
+      firstname,
+      lastname,
+      password,
+      role
+    };
 
-  const res = await fetch(`${baseUrl}/createuser`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(userData)
-  });
+    const res = await fetch(`${baseUrl}/createuser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userData)
+    });
 
-  const data = await res.json();
+    const data = await res.json();
 
-  console.log(data);
+    if (!res.ok) {
+      setError(data?.detail || "Failed to create account");
+      return;
+    }
+
+    const formData = new URLSearchParams();
+    formData.append("username", username);
+    formData.append("password", password);
+
+    const loginRes = await fetch(`${baseUrl}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: formData,
+    });
+
+    const loginData = await loginRes.json();
+    const accessToken = loginData?.access_token;
+
+    if (!loginRes.ok || !accessToken) {
+      setError("Account created. Please log in.");
+      navigate("/login");
+      return;
+    }
+
+    const loggedInUser = decodeToken(accessToken);
+
+    if (!loggedInUser) {
+      setError("Account created. Please log in.");
+      navigate("/login");
+      return;
+    }
+
+    localStorage.setItem("lm_token", accessToken);
+    setAuthUser(loggedInUser);
+    navigate("/");
+  } catch (error) {
+    console.log(error);
+    setError("Something went wrong. Please try again.");
+  }
 };
 
 
@@ -111,7 +156,7 @@ const handleSignup = async () => {
                   onChange={(e) => setRole(e.target.value)}
                 >
                   <option value="">Select Role</option>
-                  <option value="admin">Admin</option>
+                  <option value="hr">HR</option>
                   <option value="user">User</option>
                 </select>
 
@@ -120,6 +165,8 @@ const handleSignup = async () => {
                     Already have an account?
                   </Link>
                 </div>
+
+                {error && <p className="text-error text-sm mt-2">{error}</p>}
 
                 <button onClick={handleSignup} className="btn btn-neutral mt-4">
                   Sign Up

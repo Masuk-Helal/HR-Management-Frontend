@@ -37,8 +37,12 @@ const Navbar = () => {
                 <Link to={"/"}>Home</Link>
               </li>
               <li>
-                <Link to={"/browsebook"}>Browse Books</Link>
+                <Link to={"/alljobs"}>All Jobs</Link>
               </li>
+              <li>
+                <Link to={"/apply"}>My Applyed</Link>
+              </li>
+              
             </ul>
           </div>
           <a className="btn btn-ghost text-xl">daisyUI</a>
@@ -49,15 +53,47 @@ const Navbar = () => {
               <Link to={"/"}>Home</Link>
             </li>
             <li>
-              <Link to={"/browsebook"}>Browse Books</Link>
+              <Link to={"/alljobs"}>All Jobs</Link>
+            </li>
+            <li>
+              <Link to={"/apply"}>My Applyed</Link>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
           {authUser ? (
-            <button onClick={logout} className="btn">
-              Log Out
-            </button>
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-circle avatar avatar-placeholder"
+              >
+                <div className="bg-neutral text-neutral-content w-10 rounded-full">
+                  <span>{authUser?.sub?.[0]?.toUpperCase()}</span>
+                </div>
+              </div>
+              <ul
+                tabIndex={-1}
+                className="dropdown-content menu bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              >
+
+                {authUser?.role === "hr" && (
+                  <li>
+                    <Link to={"/hr"}>HR Profile</Link>
+                  </li>
+                )}
+
+                <li>
+                  <Link to={"/profile"}>User Profile</Link>
+                </li>
+                <li>
+                  <Link to={"/change-password"}>Change Password</Link>
+                </li>
+                <li>
+                  <button onClick={logout}>Logout</button>
+                </li>
+              </ul>
+            </div>
           ) : (
             <Link to={"/login"} className="btn">
               Log In

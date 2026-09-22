@@ -2,14 +2,17 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { baseUrl } from "../services/BaseUrl";
 import { AuthContext } from "../context/AuthProvider";
+import { decodeToken } from "../services/decodeToken";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const {authUser, setAuthUser} = useContext(AuthContext)
   const navigate = useNavigate()
 
   const handleLogin = async () => {
+    setError("");
     try {
       const formData = new URLSearchParams();
       formData.append("username", username);
@@ -22,26 +25,26 @@ const Login = () => {
       });
 
       const data = await res.json();
-      const accessToken = data?.access_token
-      localStorage.setItem('lm_token', accessToken)
+      const accessToken = data?.access_token;
 
-      const userRef = await fetch(`${baseUrl}/user`,{
-        headers:{
-            Authorization: `Bearer ${accessToken}`
-        }
-      })
-
-      const userData = await userRef.json()
-
-      setAuthUser(userData)
-
-      if(userData.detail  == 'User not found'){
-        return
-      }else{
-        navigate('/')
+      if (!res.ok || !accessToken) {
+        setError(data?.detail || "Invalid username or password");
+        return;
       }
+
+      const userData = decodeToken(accessToken);
+
+      if (!userData) {
+        setError("Invalid session token. Please try again.");
+        return;
+      }
+
+      localStorage.setItem('lm_token', accessToken)
+      setAuthUser(userData)
+      navigate('/')
     } catch (error) {
       console.log(error);
+      setError("Something went wrong. Please try again.");
     }
   };
 
@@ -79,6 +82,7 @@ const Login = () => {
                 <div>
                   <Link to={'/signup'} className="link link-hover">Don't have an account</Link>
                 </div>
+                {error && <p className="text-error text-sm mt-2">{error}</p>}
                 <button onClick={handleLogin} className="btn btn-neutral mt-4">Login</button>
               </fieldset>
             </div>

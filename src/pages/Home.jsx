@@ -1,5 +1,5 @@
 import React from 'react';
-import FeatureBooks from '../component/FeatureBooks';
+import FeatureBooks from './../component/FeatureJobs';
 
 const Home = () => {
     return (
