@@ -96,7 +96,7 @@ const AllJobs = () => {
                         <select
                             name="job_type"
                             id="job_type"
-                            className="select select-bordered rounded-full bg-base-100"
+                            className="select select-bordered rounded-full bg-base-100 w-full md:w-auto"
                             value={jobType}
                             onChange={(e) => setJobType(e.target.value)}
                         >
@@ -148,7 +148,7 @@ const AllJobs = () => {
                                     </span>
                                 </div>
 
-                                <div className="flex items-start gap-4 mt-3">
+                                <div className="flex flex-col sm:flex-row items-start gap-4 mt-3">
                                     <div
                                         className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center bg-linear-to-br ${gradients[i % gradients.length]}`}
                                     >
@@ -198,7 +198,7 @@ const AllJobs = () => {
 
                                     <Link
                                         to={`/jobdetails/${job.id}`}
-                                        className="btn btn-outline btn-primary rounded-full shrink-0"
+                                        className="btn btn-outline btn-primary rounded-full shrink-0 w-full sm:w-auto"
                                     >
                                         View Details
                                     </Link>

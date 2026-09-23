@@ -93,7 +93,7 @@ const Login = () => {
         </div>
 
         {/* Right form card */}
-        <div className="bg-base-100 border border-base-200 rounded-2xl shadow-xl p-8 lg:p-10">
+        <div className="bg-base-100 border border-base-200 rounded-2xl shadow-xl p-5 sm:p-8 lg:p-10">
           <h2 className="text-2xl font-bold">Sign in to your account</h2>
           <p className="text-base-content/60 text-sm mt-1">
             Welcome back! Please enter your details.

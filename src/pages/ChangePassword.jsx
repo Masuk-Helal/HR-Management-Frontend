@@ -55,7 +55,7 @@ const ChangePassword = () => {
                 </div>
 
                 {/* Card */}
-                <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
+                <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-5 sm:p-8">
 
                     <form onSubmit={handleChangePassword}>
 

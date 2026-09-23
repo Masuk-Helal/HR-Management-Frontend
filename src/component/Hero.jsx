@@ -15,7 +15,7 @@ const Hero = () => {
 
     return (
         <div className="bg-linear-to-br from-primary/10 via-base-100 to-success/10">
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24 grid lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24 grid md:grid-cols-2 gap-10 lg:gap-12 items-center">
 
                 {/* Left content */}
                 <div>
@@ -51,7 +51,7 @@ const Hero = () => {
                 </div>
 
                 {/* Right illustration */}
-                <div className="relative hidden lg:flex justify-center items-center">
+                <div className="relative hidden md:flex justify-center items-center">
                     <div className="absolute w-72 h-72 bg-primary/20 rounded-full blur-3xl"></div>
                     <img
                         src={heroImage}

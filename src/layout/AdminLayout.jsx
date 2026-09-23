@@ -80,6 +80,32 @@ const AdminLayout = () => {
 
               {/* List item */}
               <li>
+                <Link
+                  to="/hr/applications"
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="Applications"
+                >
+                  {/* Applications icon */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="2"
+                    fill="none"
+                    stroke="currentColor"
+                    className="my-1.5 inline-block size-4"
+                  >
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18"></path>
+                    <path d="M8 14h8"></path>
+                  </svg>
+                  <span className="is-drawer-close:hidden">Applications</span>
+                </Link>
+              </li>
+
+              {/* List item */}
+              <li>
                 <button
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                   data-tip="Settings"

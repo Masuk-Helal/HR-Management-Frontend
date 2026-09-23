@@ -80,8 +80,8 @@ const UserProfile = () => {
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
 
                     {/* Profile Header */}
-                    <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-8">
-                        <div className="flex items-center gap-5">
+                    <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-5 sm:px-8 py-8">
+                        <div className="flex flex-col sm:flex-row items-center sm:items-center gap-5 text-center sm:text-left">
 
                             {/* Avatar */}
                             <div className="w-20 h-20 rounded-full bg-white/20 
@@ -100,7 +100,7 @@ const UserProfile = () => {
                                     @{profile?.username}
                                 </p>
 
-                                <div className="flex items-center gap-2 mt-2">
+                                <div className="flex items-center justify-center sm:justify-start gap-2 mt-2">
                                     <span className="px-3 py-1 text-xs font-medium
                                         bg-white/20 rounded-full">
                                         {profile?.role}
@@ -118,7 +118,7 @@ const UserProfile = () => {
                     </div>
 
                     {/* Form */}
-                    <form className="p-8">
+                    <form className="p-5 sm:p-8">
 
                         <div className="mb-6">
                             <h3 className="text-lg font-semibold text-gray-900">
@@ -240,7 +240,7 @@ const UserProfile = () => {
                         </div>
 
                         {/* Buttons */}
-                        <div className="flex justify-end gap-3 mt-8 pt-6 border-t border-gray-200">
+                        <div className="flex flex-col sm:flex-row justify-end gap-3 mt-8 pt-6 border-t border-gray-200">
 
                             <button
                                 type="button"

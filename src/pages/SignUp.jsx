@@ -13,7 +13,6 @@ const SignUp = () => {
   const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("user");
-  const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState("");
   const { setAuthUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -130,7 +129,7 @@ const handleSignup = async (e) => {
         </div>
 
         {/* Right form card */}
-        <div className="bg-base-100 border border-base-200 rounded-2xl shadow-xl p-8 lg:p-10">
+        <div className="bg-base-100 border border-base-200 rounded-2xl shadow-xl p-5 sm:p-8 lg:p-10">
           <h2 className="text-2xl font-bold">Create your free account</h2>
           <p className="text-base-content/60 text-sm mt-1">
             Start as a candidate or an employer. Switch anytime.
@@ -210,21 +209,12 @@ const handleSignup = async (e) => {
               </select>
             </div>
 
-            <label className="flex items-start gap-2 mt-5 text-sm text-base-content/70">
-              <input
-                type="checkbox"
-                className="checkbox checkbox-sm mt-0.5"
-                checked={agreed}
-                onChange={(e) => setAgreed(e.target.checked)}
-                required
-              />
-              I agree to the Terms of Service and Privacy Policy.
-            </label>
+        
 
             {error && <p className="text-error text-sm mt-3">{error}</p>}
 
             <button type="submit" className="btn btn-primary w-full mt-6">
-              Create {role === "hr" ? "Employer" : "Candidate"} Account
+              Create Account
             </button>
 
             <p className="text-center text-sm text-base-content/60 mt-5">

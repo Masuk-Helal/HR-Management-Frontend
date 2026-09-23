@@ -13,6 +13,7 @@ import AdminLayout from '../layout/AdminLayout';
 import CreateJob from '../pages/admin/CreateJob';
 import ManageJobs from '../pages/admin/ManageJobs';
 import EditJob from '../pages/admin/EditJob';
+import Applications from '../pages/admin/Applications';
 import PrivateRoutes from './PrivateRoutes';
 import HrProtected from './HrProtected';
 const router = createBrowserRouter([
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path:'edit-job/:id',
         element:<EditJob/>
+      },
+      {
+        path:'applications',
+        element:<Applications/>
       }
     ]
   }

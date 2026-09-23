@@ -79,7 +79,7 @@ const CreateJob = () => {
         Fill in the details below to post a new job opening.
       </p>
 
-      <div className="bg-base-100 rounded-xl shadow-sm p-8">
+      <div className="bg-base-100 rounded-xl shadow-sm p-4 sm:p-8">
         <form onSubmit={handleOpenConfirm}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
             <div>

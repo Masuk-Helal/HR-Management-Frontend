@@ -6,7 +6,7 @@ const Navbar = () => {
   const { authUser, logout } = useContext(AuthContext);
 
   return (
-    <div className="navbar bg-base-100 shadow-sm px-4 lg:px-8">
+    <div className="navbar bg-base-100 shadow-sm px-3 sm:px-4 lg:px-8">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -36,14 +36,16 @@ const Navbar = () => {
             <li>
               <Link to={"/alljobs"}>Jobs</Link>
             </li>
-            <li>
-              <Link to={"/apply"}>My Applyed</Link>
-            </li>
+            {authUser?.role !== "hr" && (
+              <li>
+                <Link to={"/apply"}>My Applyed</Link>
+              </li>
+            )}
           </ul>
         </div>
 
         {/* Logo */}
-        <Link to={"/"} className="flex items-center gap-2">
+        <Link to={"/"} className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -52,7 +54,7 @@ const Navbar = () => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="h-7 w-7 text-primary"
+            className="h-6 w-6 sm:h-7 sm:w-7 text-primary shrink-0"
           >
             <path d="M20 7h-9" />
             <path d="M14 17H5" />
@@ -60,10 +62,10 @@ const Navbar = () => {
             <circle cx="7" cy="7" r="3" />
           </svg>
           <div className="leading-tight">
-            <p className="text-xl font-extrabold">
+            <p className="text-base sm:text-xl font-extrabold whitespace-nowrap">
               Jobs <span className="text-primary">Portal</span>
             </p>
-            <p className="text-[10px] tracking-widest text-base-content/50 -mt-1">
+            <p className="hidden sm:block text-[10px] tracking-widest text-base-content/50 -mt-1">
               ONLINE JOBS FINDER
             </p>
           </div>
@@ -78,13 +80,15 @@ const Navbar = () => {
           <li>
             <Link to={"/alljobs"}>Jobs</Link>
           </li>
-          <li>
-            <Link to={"/apply"}>My Applyed</Link>
-          </li>
+          {authUser?.role !== "hr" && (
+            <li>
+              <Link to={"/apply"}>My Applyed</Link>
+            </li>
+          )}
         </ul>
       </div>
 
-      <div className="navbar-end gap-3">
+      <div className="navbar-end gap-2 sm:gap-3">
         {authUser ? (
           <div className="dropdown dropdown-end">
             <div
@@ -119,10 +123,16 @@ const Navbar = () => {
           </div>
         ) : (
           <>
-            <Link to={"/login"} className="btn btn-outline btn-primary rounded-full px-6">
+            <Link
+              to={"/login"}
+              className="btn btn-sm sm:btn-md btn-outline btn-primary rounded-full px-3 sm:px-6"
+            >
               Sign in
             </Link>
-            <Link to={"/signup"} className="btn btn-primary rounded-full px-6">
+            <Link
+              to={"/signup"}
+              className="btn btn-sm sm:btn-md btn-primary rounded-full px-3 sm:px-6"
+            >
               Register
             </Link>
           </>

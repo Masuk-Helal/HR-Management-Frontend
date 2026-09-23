@@ -37,7 +37,7 @@ const FeatureJobs = () => {
                 {featureJobs.slice(0, 8).map((job, i) => (
                     <div
                         key={job.id}
-                        className="bg-base-100 border border-base-200 rounded-2xl shadow-sm p-8 transition-transform duration-300 hover:scale-105 hover:shadow-md"
+                        className="bg-base-100 border border-base-200 rounded-2xl shadow-sm p-6 sm:p-8 transition-transform duration-300 hover:scale-105 hover:shadow-md"
                     >
                         <p className="flex items-center gap-1 text-xs font-medium text-base-content/60">
                             💼 {job.job_type}

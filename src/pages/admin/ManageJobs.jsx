@@ -60,10 +60,10 @@ const ManageJobs = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <label className="input input-bordered rounded-full flex items-center gap-2 bg-base-100 w-100">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+          <label className="input input-bordered rounded-full flex items-center gap-2 bg-base-100 w-full sm:w-72">
             <svg
-              className="h-4 w-4 opacity-50"
+              className="h-4 w-4 opacity-50 shrink-0"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="none"
@@ -84,7 +84,7 @@ const ManageJobs = () => {
           <select
             name="job_type"
             id="job_type"
-            className="select select-bordered rounded-full bg-base-100"
+            className="select select-bordered rounded-full bg-base-100 w-full sm:w-auto"
             value={jobType}
             onChange={(e) => setJobType(e.target.value)}
           >
