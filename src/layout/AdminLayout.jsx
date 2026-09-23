@@ -81,6 +81,31 @@ const AdminLayout = () => {
               {/* List item */}
               <li>
                 <Link
+                  to="/hr/create-job"
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="Create Job"
+                >
+                  {/* Create Job icon */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="2"
+                    fill="none"
+                    stroke="currentColor"
+                    className="my-1.5 inline-block size-4"
+                  >
+                    <path d="M12 5v14"></path>
+                    <path d="M5 12h14"></path>
+                  </svg>
+                  <span className="is-drawer-close:hidden">Create Job</span>
+                </Link>
+              </li>
+
+              {/* List item */}
+              <li>
+                <Link
                   to="/hr/applications"
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                   data-tip="Applications"

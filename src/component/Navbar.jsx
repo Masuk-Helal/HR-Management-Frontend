@@ -106,12 +106,12 @@ const Navbar = () => {
             >
               {authUser?.role === "hr" && (
                 <li>
-                  <Link to={"/hr/manage-jobs"}>HR Profile</Link>
+                  <Link to={"/hr/manage-jobs"}>Manage Jobs</Link>
                 </li>
               )}
 
               <li>
-                <Link to={"/profile"}>User Profile</Link>
+                <Link to={"/profile"}>{authUser?.role === "hr" ? "HR Profile" : "User Profile"}</Link>
               </li>
               <li>
                 <Link to={"/change-password"}>Change Password</Link>
