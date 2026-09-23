@@ -1,9 +1,13 @@
 import React from "react";
 import { Link, Outlet } from "react-router";
+import Navbar from "../component/Navbar";
+import Footer from "../component/Footer";
 
 const AdminLayout = () => {
   return (
     <div>
+      <Navbar></Navbar>
+
       <div className="drawer lg:drawer-open">
         <input
           id="my-drawer-4"
@@ -103,6 +107,8 @@ const AdminLayout = () => {
           </div>
         </div>
       </div>
+
+      <Footer></Footer>
     </div>
   );
 };

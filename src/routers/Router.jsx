@@ -7,6 +7,8 @@ import AllJobs from './../pages/AllJobs';
 import JobDetails from '../pages/JobDetails';
 import MyApplyed from '../pages/MyApplyed';
 import Apply from '../pages/Apply';
+import UserProfile from '../pages/UserProfile';
+import ChangePassword from '../pages/ChangePassword';
 import AdminLayout from '../layout/AdminLayout';
 import CreateJob from '../pages/admin/CreateJob';
 import ManageJobs from '../pages/admin/ManageJobs';
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
       {
         path:"/apply/:id",
         element:<PrivateRoutes><Apply></Apply></PrivateRoutes>
+      },
+      {
+        path:"/profile",
+        element:<PrivateRoutes><UserProfile></UserProfile></PrivateRoutes>
+      },
+      {
+        path:"/change-password",
+        element:<PrivateRoutes><ChangePassword></ChangePassword></PrivateRoutes>
       }
     ]
   },
